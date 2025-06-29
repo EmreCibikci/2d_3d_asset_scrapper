@@ -165,7 +165,7 @@ Bu uygulama eğitim amaçlıdır. Kullanıcılar, hedef sitelerin kullanım şar
 
 ## 📞 İletişim
 
-Sorularınız için GitHub Issues kullanın veya [email@example.com] adresine e-posta gönderin.
+Sorularınız için GitHub Issues kullanın veya [tryfxme@gmail.com] adresine e-posta gönderin.
 
 ---
 
