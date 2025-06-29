@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Asset Generator - Admin</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #1a1a2e; color: #eee; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .header { text-align: center; margin-bottom: 40px; }
+        .admin-section { background: #16213e; border-radius: 15px; padding: 30px; margin-bottom: 30px; }
+        .btn { background: #4f46e5; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
+        .btn:hover { background: #3730a3; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔧 Admin Panel</h1>
+            <p>AI Asset Generator Administration</p>
+        </div>
+        
+        <div class="admin-section">
+            <h2>Model Training</h2>
+            <p>Train the AI model with current asset data</p>
+            <button class="btn" onclick="startTraining()">Start Training</button>
+        </div>
+        
+        <div class="admin-section">
+            <h2>System Status</h2>
+            <div id="systemStatus">Loading...</div>
+        </div>
+    </div>
+    
+    <script>
+        function startTraining() {
+            if (confirm('Start model training? This may take a while.')) {
+                fetch('/api/train', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ epochs: 20 })
+                })
+                .then(response => response.json())
+                .then(data => alert(data.message));
+            }
+        }
+        
+        // Load system status
+        fetch('/api/stats')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('systemStatus').innerHTML = `
+                    <p>Total Assets: ${data.total_assets}</p>
+                    <p>Model Status: ${data.model_status}</p>
+                `;
+            });
+    </script>
+</body>
+</html>

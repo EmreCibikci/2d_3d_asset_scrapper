@@ -1,0 +1,9 @@
+{
+  "min_delay": 1.3122000000000003,
+  "max_delay": 5.248800000000001,
+  "proxy_rotation_frequency": 25,
+  "profile_rotation_frequency": 15,
+  "aggressive_mode": false,
+  "stealth_mode": true,
+  "threat_level": "medium"
+}

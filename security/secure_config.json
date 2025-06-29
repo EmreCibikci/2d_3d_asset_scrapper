@@ -1,0 +1,118 @@
+{
+  "session_management": {
+    "max_requests_per_session": 100,
+    "max_session_duration": 3600,
+    "session_renewal_jitter": 300,
+    "cookie_persistence": true,
+    "session_fingerprint_rotation": true
+  },
+  "request_patterns": {
+    "base_delay": 2.0,
+    "max_delay": 10.0,
+    "delay_jitter": 0.5,
+    "burst_protection": true,
+    "max_requests_per_minute": 30,
+    "human_like_patterns": true,
+    "random_long_delays": {
+      "enabled": true,
+      "probability": 0.1,
+      "min_delay": 30,
+      "max_delay": 120
+    }
+  },
+  "failure_handling": {
+    "max_failed_requests": 5,
+    "success_rate_threshold": 0.8,
+    "retry_attempts": 3,
+    "exponential_backoff": true,
+    "circuit_breaker": {
+      "enabled": true,
+      "failure_threshold": 10,
+      "recovery_timeout": 300
+    }
+  },
+  "security_features": {
+    "enable_proxy_rotation": true,
+    "enable_profile_rotation": true,
+    "enable_captcha_solving": true,
+    "enable_cloudflare_bypass": true,
+    "enable_javascript_rendering": false,
+    "stealth_mode": true,
+    "aggressive_mode": false
+  },
+  "detection_evasion": {
+    "randomize_headers": true,
+    "randomize_tls_fingerprint": true,
+    "simulate_human_behavior": true,
+    "avoid_detection_patterns": true,
+    "header_order_randomization": true,
+    "tcp_fingerprint_randomization": false
+  },
+  "monitoring": {
+    "log_requests": true,
+    "log_level": "INFO",
+    "save_failed_responses": true,
+    "performance_monitoring": true,
+    "security_alerts": true,
+    "stats_collection": true
+  },
+  "site_specific": {
+    "craftpix.net": {
+      "aggressive_mode": true,
+      "min_delay": 3.0,
+      "max_requests_per_session": 50,
+      "requires_javascript": true
+    },
+    "freepik.com": {
+      "stealth_mode": true,
+      "min_delay": 5.0,
+      "enable_cloudflare_bypass": true,
+      "requires_login": true
+    },
+    "itch.io": {
+      "standard_mode": true,
+      "min_delay": 1.0,
+      "max_requests_per_session": 200
+    },
+    "opengameart.org": {
+      "standard_mode": true,
+      "min_delay": 1.5,
+      "max_requests_per_session": 150
+    },
+    "kenney.nl": {
+      "standard_mode": true,
+      "min_delay": 1.0,
+      "max_requests_per_session": 100
+    }
+  },
+  "emergency_protocols": {
+    "ip_ban_detection": {
+      "enabled": true,
+      "indicators": [
+        "403 Forbidden",
+        "429 Too Many Requests",
+        "Your IP has been blocked",
+        "Access denied"
+      ],
+      "response": "switch_proxy_and_delay"
+    },
+    "captcha_flood": {
+      "enabled": true,
+      "threshold": 3,
+      "response": "long_delay_and_profile_change"
+    },
+    "rate_limit_detection": {
+      "enabled": true,
+      "respect_retry_after": true,
+      "default_backoff": 60
+    }
+  },
+  "advanced_features": {
+    "dns_over_https": false,
+    "custom_dns_servers": [],
+    "tcp_keep_alive": true,
+    "connection_pooling": true,
+    "http2_support": false,
+    "certificate_pinning": false
+  }
+}
